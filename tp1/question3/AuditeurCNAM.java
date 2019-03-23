@@ -45,7 +45,32 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        //Setting pre conditions for this.nom
+        boolean conditionPourNom = this.nom != null && !this.nom.equals("");
+        //Setting pre conditions for this.prenom
+        boolean conditionPourPrenom = this.prenom != null && !this.prenom.equals("");
+        //Check if one of the conditions are incorrect
+        if(!conditionPourNom || !conditionPourPrenom){
+            //If true return an empty string
+            return "";
+        }
+        //Declare and affect String nomPrime
+        String nomPrime = this.nom;
+        //Replace special characters by "_"
+        nomPrime = nomPrime.replaceAll("[!@#$%^&*();:.,<>?/\\-_ ]","_");
+        //Replace "é" by "e"
+        nomPrime = nomPrime.replaceAll("é","e");
+        //Transform to lower case
+        nomPrime = nomPrime.toLowerCase();
+        //Check if length >= 6
+        if(nomPrime.length() > 6){
+            //Crop string to 6 characters
+            nomPrime = nomPrime.substring(0, 6);
+        }
+        //Add "_" then lower case this.prenom and take the add letter
+        nomPrime += "_" + this.prenom.toLowerCase().charAt(0);
+        //Returh the login result string
+        return nomPrime;
     }
 
     /**
@@ -54,7 +79,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return this.nom;
     }
 
     /**
@@ -63,7 +88,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return this.prenom;
     }
 
     /**
@@ -72,7 +97,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return this.matricule;
     }
 
     /**

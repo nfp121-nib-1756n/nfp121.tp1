@@ -20,6 +20,10 @@ public class Picture {
     private Square window;
     private Triangle roof;
     private Circle sun;
+    private Circle sun2;
+    
+    private boolean terreEstFixe;
+    private boolean soleilEstBleu;
 
     /**
      * Constructor for objects of class Picture
@@ -54,6 +58,16 @@ public class Picture {
         sun.moveHorizontal(180);
         sun.moveVertical(-10);
         sun.changeSize(60);
+        
+        sun2 = new Circle();
+        sun2.changeColor("yellow");
+        sun2.moveHorizontal(180);
+        sun2.moveVertical(-10);
+        sun2.changeSize(60);
+        
+        terreEstFixe = true;
+        soleilEstBleu = false;
+        
         sun.makeVisible();
     }
 
@@ -67,6 +81,7 @@ public class Picture {
             window.changeColor("white");
             roof.changeColor("black");
             sun.changeColor("black");
+            sun2.changeColor("black");
         }
     }
 
@@ -79,8 +94,16 @@ public class Picture {
             wall.changeColor("red");
             window.changeColor("black");
             roof.changeColor("green");
-            sun.changeColor("yellow");
+            sun2.changeColor("yellow");
+            sun.changeColor("blue");
+            soleilEstBleu = true;
         }
     }
-
+    
+    public void coucherSoleil() {
+        if(terreEstFixe && soleilEstBleu) {
+            sun.slowMoveVertical(400);
+            draw();
+        }
+    }
 }
